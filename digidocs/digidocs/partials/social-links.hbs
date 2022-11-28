@@ -1,0 +1,12 @@
+<div class="social-links text-center">
+    {{#if @site.twitter}}
+    <a href="{{twitter_url @site.twitter}}" title="{{t "Twitter"}}" rel="noopener" class="tooltip">{{> icons/twitter}}</a>
+    {{/if}}
+    {{#if @site.facebook}}
+    <a href="{{facebook_url @site.facebook}}" title="{{t "Facebook"}}" rel="noopener" class="tooltip">{{> icons/facebook}}</a>
+    {{/if}}
+
+    {{!-- start custom social links icon --}}
+    <a href="#" title="{{t "GitHub"}}" rel="noopener" class="tooltip">{{> icons/github}}</a>
+    {{!-- end custom social links icon --}}
+</div>

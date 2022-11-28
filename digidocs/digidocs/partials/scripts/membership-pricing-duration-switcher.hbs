@@ -1,0 +1,13 @@
+<script>
+    let switcher  = document.getElementById('membership-duration');
+    let pricingTables = document.querySelectorAll('.pricing-table');
+    switcher.querySelectorAll('button').forEach((el)=> {
+        el.addEventListener('click', (e)=> {
+            let activeDuration= e.target.getAttribute('data-duration')
+            switcher.setAttribute('data-active-duration', activeDuration)
+            pricingTables.forEach((table)=> {
+                table.setAttribute('data-active-duration', activeDuration)
+            })
+        })
+    })
+</script>

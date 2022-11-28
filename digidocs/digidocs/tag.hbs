@@ -1,0 +1,32 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container js-main-content-area">
+        <div class="row">
+            {{> sidebar}}
+            <div class="col-lg-9 topic-archive">
+                {{#tag}}
+                <h1 class="topic-name">{{name}}</h1>
+                <div class="topic-description">
+                    {{description}}
+                </div>
+                {{/tag}}
+                <div class="post-list-wrap">
+                    {{#get "posts" filter="tag:{{tag.slug}}" limit="all" order="published_at asc"}}
+                    {{#foreach posts visibility="all"}}
+                    <div class="post-card">
+                        <a href="{{url}}">
+                            <h2 class="post-title h4">{{title}}{{> icons/arrow-forward}}</h2>
+                            <div class="excerpt">
+                                {{excerpt}}
+                            </div>
+                        </a>
+                    </div>
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> contact-cta}}
+</div>

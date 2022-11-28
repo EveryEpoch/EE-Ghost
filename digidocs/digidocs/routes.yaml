@@ -1,0 +1,21 @@
+routes:
+  /subscribe/: subscribe
+  /signup/: signup
+  /signin/: signin
+  /account/: account
+  
+collections:
+  /faq/:
+    permalink: /faq/{slug}/
+    template: faq
+    filter: tag:faq
+    data: tag.faq
+
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: tag:-faq
+
+taxonomies:
+  tag: /topic/{slug}/
+  author: /author/{slug}/

@@ -1,0 +1,54 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container js-main-content-area">
+        <div class="row">
+            {{#post}}
+            {{#has tag="faq"}}
+            {{> sidebar-faq}}
+            {{else}}
+            {{> sidebar}}
+            {{/has}}
+            {{/post}}
+            <div class="col-lg-9">
+                {{#post}}
+                <div class="single-post-wrap" id="single-post-wrap">
+                    <h1 class="post-title">{{title}}</h1>
+                    {{#if feature_image}}
+                    <div class="featured-image-wrap">
+                        <img src="{{feature_image}}" alt="" class="feature-image">
+                    </div>
+                    {{/if}}
+                    {{#if access}}
+                    <div class="toc-wrap" id="toc-wrap">
+                        <div class="toc-title h4">{{t "Table of contents"}}</div>
+                    </div>
+                    {{/if}}
+                    <div class="post-content{{^if access}} no-access{{/if}}" id="post-content">
+                        {{content}}
+                    </div>
+                    <div class="post-footer">
+                        <div class="dates">
+                            <time class="date-publish" datetime="{{date published_at format="YYYY-MM-DD"}}"><strong>{{t "Published:"}}</strong> {{date published_at format="MMMM DD, YYYY"}}</time>
+                            <time class="date-update" datetime="{{date updated_at format="YYYY-MM-DD"}}"><strong>{{t "Last updated:"}}</strong> {{date updated_at format="MMMM DD, YYYY"}}</time>
+                        </div>
+                        {{#if @custom.show_share_buttons}}
+                        <div class="icons">
+                            <a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}" onclick="window.open(this.href, 'twitter-share', 'width=580,height=296');return false;" class="tooltip" data-tlite="{{t "Tweet this"}}">{{> icons/twitter}}</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="tooltip" data-tlite="{{t "Share on facebook"}}">{{> icons/facebook}}</a>
+                            <a href="#" class="tooltip js-copy-link" data-tlite="{{t "Copy link"}}" data-clipboard-text="{{url absolute="true"}}" onclick="return false;">{{> icons/link-2}}</a>
+                            <a href="#" class="tooltip js-print" data-tlite="{{t "Print this page"}}">{{> icons/printer}}</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                {{> prev-next}}
+                {{#if @custom.disqus_shortname}}
+                {{> disqus-comment}}
+                {{/if}}
+                {{/post}}
+            </div>
+        </div>
+    </div>
+    {{> contact-cta}}
+</div>

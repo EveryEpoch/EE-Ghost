@@ -1,0 +1,100 @@
+{
+    "name": "digidocs",
+    "description": "Minimal personal blog theme",
+    "demo": "http://digidocs.gbjsolution.com",
+    "version": "3.0.0",
+    "engines": {
+        "ghost": ">=4.0.0"
+    },
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "author": {
+        "name": "GBJ solution",
+        "email": "gbjsolution@gmail.com",
+        "url": "https://gbjsolution.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Personal Blogs",
+            "Magazine Layouts"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "personal",
+        "minimal"
+    ],
+    "config": {
+        "posts_per_page": 2,
+        "card_assets": {
+            "exclude": [
+                "bookmark",
+                "gallery"
+            ]
+        },
+        "custom": {
+            "url_for_github_button_in_menu": {
+                "type": "text",
+                "default": ""
+            },
+            "copyright_text_override": {
+                "type": "text",
+                "default": ""
+            },
+            "home_intro_title": {
+                "type": "text",
+                "default": "How can we help you?",
+                "group": "homepage"
+            },
+            "show_share_buttons": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "disqus_shortname": {
+                "type": "text",
+                "group": "post"
+            }
+        },
+        "image_sizes": {
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        }
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.2",
+        "browser-sync": "^2.27.7",
+        "del": "",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-postcss": "^9.0.1",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^5.1.0",
+        "gulp-wait": "0.0.2",
+        "gulp-zip": "",
+        "postcss": "^8.4.5",
+        "postcss-css-variables": "^0.18.0",
+        "sass": "^1.49.0"
+    },
+    "dependencies": {
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-uglify": "^3.0.2"
+    }
+}

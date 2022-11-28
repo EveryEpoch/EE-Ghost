@@ -1,0 +1,87 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+            {{#if @member.paid}}
+            <div class="subscription-inner">
+                <h1 class="subscription-title">{{t "Your account"}}</h1>
+
+                {{#foreach @member.subscriptions}}
+                    <div class="subscription">
+                        {{#if cancel_at_period_end}}
+                            <p class="subscription-description">
+                                <strong class="subscription-expiration-warning">{{t "Your subscription will expire on"}} {{date current_period_end format="DD MMM YYYY"}}.</strong> {{t "If you change your mind in the meantime you can turn auto-renew back on to continue your subscription."}}
+                            </p>
+                        {{else}}
+                            <p class="subscription-description">
+                                Hey! You have an active {{@site.title}} account with access to all areas. Get in touch if have any problems or need some help getting things updated, and thanks for subscribing.
+                            </p>
+                        {{/if}}
+                        <div class="subscriber-info">
+                            {{#if @member.name}}
+                            <div class="subscriber-detail">
+                                <span class="label">{{t "Name:"}}</span>
+                                <span class="content">{{@member.name}}</span>
+                            </div>
+                            {{/if}}
+
+                            <div class="subscriber-detail">
+                                <span class="label">{{t "Email address:"}}</span>
+                                <span class="content">{{@member.email}}</span>
+                            </div>
+
+                            <div class="subscriber-detail">
+                                <span class="label">{{t "Your plan:"}}</span>
+                                <span class="content">${{price plan.amount}}/{{plan.interval}}</span>
+                            </div>
+
+                            <div class="subscriber-detail">
+                                <span class="label">{{t "Card:"}}</span>
+                                <span class="content">**** **** **** {{default_payment_card_last4}}</span>
+                            </div>
+
+                            <div class="subscriber-detail">
+                                <span class="label">
+                                    {{#if cancel_at_period_end}}
+                                        {{t "Expires:"}}
+                                    {{else}}
+                                        {{t "Next bill date:"}}
+                                    {{/if}}
+                                </span>
+                                <span class="content">{{date current_period_end format="DD MMMM YYYY"}}</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" href="javascript:"
+                            data-members-edit-billing
+                            data-members-success="{{@site.url}}/account/?stripe=billing-update-success"
+                            data-members-cancel="{{@site.url}}/account/?stripe=billing-update-cancel"
+                            >{{t "Edit billing info"}}</a>&nbsp;&nbsp;
+                        {{cancel_link
+                            class="btn btn-primary cancel-link"
+                            cancelLabel=(t "Cancel subscription")
+                            continueLabel=(t "Continue subscription")
+                        }}
+                    </div>
+                {{/foreach}}
+            </div>
+
+            {{else if @member}}
+                <div class="subscription-inner text-center">
+                    <h1 class="subscription-title">{{t "Currently, you're not a paid subscriber"}}</h1>
+                    <p class="subscription-description">
+                        {{{t "Hey there! <strong>{email}</strong> is subscribed to free updates from {title}, but doesn't have a paid subscription to unlock full access." email=@member.email title=@site.title}}}
+                    </p>
+                    <a class="btn btn-primary" href="/signup/">Subscribe now</a>
+                </div>
+            {{else}}
+                {{!-- Not logged in: Redirect to signin --}}
+                <script>window.location = '{{@site.url}}/signin/';</script>
+            {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

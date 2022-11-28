@@ -1,0 +1,29 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container js-main-content-area">
+        <div class="row">
+            <div class="col-lg-3">
+                <aside class="js-sidebar">
+                    <div class="js-sidebar-inner">
+                        <div class="sidebar-navigation changelog-sidebar">
+                            <div class="list-title">{{t "RELEASES"}}</div>
+                            <ul class="version-list" id="version-list"></ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-lg-9">
+                {{#post}}
+                <div class="single-post-wrap" id="single-post-wrap">
+                    <h1 class="post-title">{{title}}</h1>
+                    <div class="post-content changelog-template" id="post-content">
+                        {{content}}
+                    </div>
+                </div>
+                {{/post}}
+            </div>
+        </div>
+    </div>
+    {{> contact-cta}}
+</div>

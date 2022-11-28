@@ -1,0 +1,26 @@
+<div class="col-lg-3">
+    <aside class="js-sidebar">
+        <div class="js-sidebar-inner">
+            {{> sidebar-search}}
+            <div class="sidebar-navigation faq-sidebar">
+                <ul>
+                    <li class="open"><a href="{{@site.url}}/faq/">{{t "All FAQ"}}</a>
+                        <ul>
+                            {{#get "posts" filter="tag:faq" limit="all" order="published_at asc"}}
+                            {{#foreach posts visibility="all"}}
+                                <li id="{{comment_id}}" class="post-link"><a href="{{url}}">{{title}}</a></li>
+                            {{/foreach}}
+                            {{/get}}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>
+<script>
+    {{#is "post"}}
+    document.getElementById("{{comment_id}}").classList.add('current');
+    document.getElementById("{{comment_id}}").parentElement.parentElement.classList.add('open');
+    {{/is}}
+</script>

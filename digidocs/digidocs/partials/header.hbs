@@ -1,0 +1,97 @@
+<header class="site-header">
+    <div class="container flex header-inner">
+        <div class="logo">
+            {{#if @site.logo}}
+            <a href="{{@site.url}}"><img class="logo-image" src="{{@site.logo}}" alt="{{@site.title}}"></a>
+            {{else}}
+                <a href="{{@site.url}}" class="logo-text">{{@site.title}}</a>
+            {{/if}}
+        </div>
+        <div class="header-right flex">
+            {{> header-nav}}
+        </div>
+        <div class="menu-icon" id="menu-toggle">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </div>
+    <div class="mobile-nav-wrap" id="mobile-nav">
+        {{> header-nav}}
+    </div>
+    <div class="backdrop" id="backdrop"></div>
+    {{#is "home"}}
+    <div class="hero-home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    {{#if @custom.home_intro_title}}
+                    <h1 class="hero-title text-center">{{@custom.home_intro_title}}</h1>
+                    {{/if}}
+                    <div class="form-wrap">
+                        <form class="hero-search js-search-form">
+                            <div class="input-wrap">
+                                <input type="text" name="search" class="hero-search-input js-search-input large" id="search-bar" placeholder="{{t "Type to search"}}">
+                                {{> icons/search}}
+                            </div>
+                        </form>
+                        <div class="search-result" id="search-results"></div>
+                        <div class="no-result-message" id="no-result">{{t "No result found"}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{#is "post, page, tag, faq, subscribe, signup, signin, account"}}
+    <div class="secondary-header-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumb">
+                        <a href="{{@site.url}}">{{t "Home"}}</a>
+                        {{#is "faq"}}
+                        <span class="current">{{tag.name}}</span>
+                        {{/is}}
+                        {{#is "subscribe"}}
+                        <span class="current">{{t "Subscribe"}}</span>
+                        {{/is}}
+                        {{#is "signup"}}
+                        <span class="current">{{t "Sign up"}}</span>
+                        {{/is}}
+                        {{#is "signin"}}
+                        <span class="current">{{t "Log in"}}</span>
+                        {{/is}}
+                        {{#is "account"}}
+                        <span class="current">{{t "Account"}}</span>
+                        {{/is}}
+                        {{#is "tag"}}
+                            {{#tag}}
+                            {{#is "faq"}}
+                            <span class="current">{{tag.name}}</span>
+                            {{else}}
+                            <span class="current">{{name}}</span>
+                            {{/is}}
+                            {{/tag}}
+                        {{/is}}
+                        {{#is "post"}}
+                        {{#post}}
+                            {{#has tag="faq"}}
+                            <a href="{{@site.url}}/faq/">{{t "FAQ"}}</a>
+                            {{else}}
+                            <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+                            {{/has}}
+                        {{/post}}
+                        <span class="current post-title">{{post.title}}</span>
+                        {{/is}}
+                        {{#is "page"}}
+                        <span class="current post-title">{{post.title}}</span>
+                        {{/is}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/is}}
+    {{/is}}
+</header>

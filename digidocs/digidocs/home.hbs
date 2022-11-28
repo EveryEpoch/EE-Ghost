@@ -1,0 +1,69 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <section class="section-topic">
+        <div class="container">
+            <div class="row">
+                {{#get "tags" limit="all" include="count.posts" order="published_at asc" filter="slug:-faq"}}
+                {{#foreach tags}}
+                <div class="col-lg-6 js-cards abc{{^has number="1,2,3,4"}} hidden{{/has}}">
+                    <div class="topic-card{{#if feature_image}} has-image{{/if}}">
+                        {{#if feature_image}}
+                        <div class="featured-image-wrap">
+                            <img src="{{feature_image}}" alt="{{name}}" class="topic-image">
+                        </div>
+                        {{/if}}
+                        <div class="card-content">
+                            <h2 class="h3 topic-name"><a href="{{url}}">{{name}}</a></h2>
+                            {{#if description}}
+                            <p class="topic-description">
+                                {{description}}
+                            </p>
+                            {{/if}}
+                            <ul class="topic-post-list">
+                            {{#get "posts" filter="tag:{{slug}}+visibility:[public,members,paid]" limit="3" order="published_at asc"}}
+                            {{#foreach posts visibility="all"}}
+                            <li>{{> icons/file-text-outline}}<a href="{{url}}">{{title}}</a></li>
+                            {{/foreach}}
+                            {{/get}}
+                            </ul>
+                            <div class="topic-archive-link">
+                                <a href="{{url}}">{{t "See all"}} ({{count.posts}}){{> icons/arrow-forward}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                {{/foreach}}
+                {{/get}}
+                
+                
+                <div class="col-12">
+                    <div class="text-center">
+                        <a href="javascript:void(0)" class="btn btn-primary see-all js-show-all-topic" id="js-show-all-topic">{{t "Show all topic"}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ section -->
+    <section class="section-faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 col-sm-12">
+                    <h2 class="section-title text-center">{{t "Frequently Asked Questions"}}</h2>
+                    <div class="faq-wrap">
+                        {{#get "posts" filter="tag:faq" limit="5" order="published_at asc"}}
+                        {{#foreach posts visibility="all"}}
+                        <div class="faq-item">
+                            <a href="{{url}}">{{title}} {{>icons/chevron-right}}</a>
+                        </div>
+                        {{/foreach}}
+                        {{/get}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{> contact-cta}}
+</div>

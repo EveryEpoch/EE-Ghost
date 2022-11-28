@@ -1,0 +1,21 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main faq-template">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h1 class="text-center h2 page-title">{{t "Frequently Asked Questions"}}</h1>
+                <div class="faq-wrap">
+                    {{#get "posts" filter="tag:faq" limit="all" order="published_at asc" include="tags"}}
+                    {{#foreach posts visibility="all"}}
+                    <div class="faq-item">
+                        <a href="{{url}}">{{title}} {{>icons/chevron-right}}</a>
+                    </div>
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> contact-cta}}
+</div>

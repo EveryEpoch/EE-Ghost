@@ -1,0 +1,25 @@
+<footer class="footer">
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {{> footer-nav}}
+                </div>
+                <div class="col-12">
+                    <div class="copyright text-center">
+                        {{#if @custom.copyright_text_override}}
+                            {{@custom.copyright_text_override}}
+                        {{else}}
+                            &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a> - {{t "All right Reserved."}} {{{t "Published with {ghostLink}" ghostLink="<a href=\"https://ghost.org?via=biswajit48\">Ghost</a>"}}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<a href="#" id="back-to-top" class="flex back-top-btn">{{> icons/arrow-upward}}</a>
+<div class="notification notification-copy-link">
+    {{t "Link copied to clipboard."}}
+</div>
+{{> members/member-notifications}}
